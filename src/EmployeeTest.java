@@ -1,5 +1,4 @@
 public class EmployeeTest {
-
     static Employee generalManager = new Employee("Пугачёва Алла Борисовна", 1, 465000.00);
     static Employee directorOfProduction = new Employee("Киркоров Филипп Бедросович", 1, 455000.00);
     static Employee mainEngineer = new Employee("Козлов Игорь Витальевич", 2, 225000.00);
@@ -10,5 +9,4 @@ public class EmployeeTest {
     static Employee secretary = new Employee("Васильева Эльвира Альбертовна", 5, 75000.00);
     static Employee accountant = new Employee("Сухорукова Светлана Аркадьевна", 4, 138000.00);
     static Employee worker = new Employee("Сухоруков Вячеслав Викторович", 2, 120000.00);
-
 }
