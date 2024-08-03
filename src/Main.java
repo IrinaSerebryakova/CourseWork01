@@ -1,9 +1,9 @@
 public class Main {
     public static void main(String[] args) {
         Employee employee[] = {EmployeeTest.generalManager, EmployeeTest.directorOfProduction,
-                EmployeeTest.mainEngineer, EmployeeTest.engineer, EmployeeTest.estimator,
-                EmployeeTest.salesSpecialist, EmployeeTest.economist, EmployeeTest.secretary,
-                EmployeeTest.accountant, EmployeeTest.worker};
+                               EmployeeTest.mainEngineer, EmployeeTest.engineer, EmployeeTest.estimator,
+                               EmployeeTest.salesSpecialist, EmployeeTest.economist, EmployeeTest.secretary,
+                               EmployeeTest.accountant, EmployeeTest.worker};
 
         dataOfEmployee(employee);
         findEmployeeWithMinSalary(employee);

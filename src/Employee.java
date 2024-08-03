@@ -1,6 +1,5 @@
 import java.util.Objects;
 
-
 public class Employee {
     private String fullName;
     private int department;
