@@ -5,22 +5,17 @@ public class Employee {
     private String fullName;
     private int department;
     private double salary;
-    private static int id = -1;
+    private int id;
 
-    public int getId() {
-        return id;
-    }
-
-    public int counter(){
-        return id += getId();
-    }
+    public static int counter = 0;
 
     public Employee(String fullName, int department, double salary) {
         this.fullName = fullName;
         this.department = department;
         this.salary = salary;
-        this.id = counter();
+        this.id = counter++;
     }
+
     public String getFullName() {
         return fullName;
     }
@@ -28,7 +23,6 @@ public class Employee {
     public void setFullName(String fullName) {
         this.fullName = fullName;
     }
-
     public int getDepartment() {
         return department;
     }
@@ -44,7 +38,6 @@ public class Employee {
     public void setSalary(double salary) {
         this.salary = salary;
     }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

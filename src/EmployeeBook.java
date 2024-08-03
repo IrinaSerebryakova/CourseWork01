@@ -1,87 +1,38 @@
-import java.util.ArrayList;
-
+/*
 public class EmployeeBook {
-    static Employee generalManager = new Employee("Пугачёва Алла Борисовна", 1, 465000.00);
-    static Employee directorOfProduction = new Employee("Киркоров Филипп Бедросович", 1, 455000.00);
-    static Employee mainEngineer = new Employee("Козлов Игорь Витальевич", 2, 225000.00);
-    static Employee engineer = new Employee("Козлов Иван Игоревич", 2, 125000.00);
-    static Employee estimator = new Employee("Бронина Виктория Васильевна", 2, 120000.00);
-    static Employee salesSpecialist = new Employee("Козлов Святослав Иванович", 3, 156000.00);
-    static Employee economist = new Employee("Восточная Марина Васильевна", 4, 110000.00);
-    static Employee secretary = new Employee("Васильева Эльвира Альбертовна", 5, 75000.00);
-    static Employee accountant = new Employee("Сухорукова Светлана Аркадьевна", 4, 138000.00);
-    static Employee worker = new Employee("Сухоруков Вячеслав Викторович", 2, 120000.00);
+
 
     public static Employee[] getEmployees() {
         return employees;
     }
 
-    private static Employee employees[] = {generalManager, directorOfProduction, mainEngineer,
-            engineer, estimator, salesSpecialist, economist,
-            secretary, accountant, worker};
 
-    // Получить список всех сотрудников со всеми имеющимися данными
-    public static void dataOfEmployee(Employee employee[]) {
-        System.out.println("Список сотрудников компании: ");
-        for (int id = 0; id < employee.length; id++) {
-            System.out.println(employee[id].toString());
-        }
-        System.out.println("");
-    }
+*/
+/*
+  EmployeeBook employeeBook = new EmployeeBook();
 
-    // Сумма затрат на ЗП в месяц
-    public static double findSumOfSalaryForMonth(Employee employee[]) {
-        double sum = 0;
-        for (int id = 0; id < employee.length; id++) {
-            sum += employee[id].getSalary();
-        }
-        System.out.println("\nСумма затрат на заработную плату в месяц составляет: " + sum);
-        return sum;
-    }
+  employeeBook.indexSalary(employeeBook.getEmployees(), 0.05);
+  employeeBook.findEmployeeWithMinSalary(employeeBook.getEmployees(), 2);
+  employeeBook.findEmployeeWithMaxSalary(employeeBook.getEmployees(), 2);
+  employeeBook.findSumOfSalaryForMonth(employeeBook.getEmployees(), 2);
+  employeeBook.findAverageSalary(employeeBook.getEmployees(), 2);
+  employeeBook.indexTheSalary(employeeBook.getEmployees(), 2, 0.05);
+  employeeBook.dataOfEmployee(employeeBook.getEmployees());
+  employeeBook.dataOfEmployee(employeeBook.getEmployees(), 2);
 
+  employeeBook.deleteEmployee(employeeBook.getEmployees(),3);
+  employeeBook.getEmployeeForId(employeeBook.getEmployees(),4);
+  employeeBook.findOpenSpace(employeeBook.getEmployees());
+  Employee welder = new Employee("Мурзинов Павел Прокофьевич", 2, 150000.0);
+  employeeBook.addNewEmployee(employeeBook.getEmployees(), welder);
+  employeeBook.dataOfEmployee(employeeBook.getEmployees());
+  employeeBook.dataOfEmployee(employeeBook.getEmployees(), 2);
+  employeeBook.compareSalaryLessArgs(employeeBook.getEmployees(),150000.0);
+  employeeBook.compareSalaryMoreArgs(employeeBook.getEmployees(),150000.0);
+  */
 
-    // Найти сотрудника с минимальной ЗП
-    public static Employee findEmployeeWithMinSalary(Employee employee[]) {
-        int id;
-        int idMin = 0;
-        double minSalary = employee[0].getSalary();
-        for (id = 1; id < employee.length; id++) {
-            if (employee[id].getSalary() < minSalary) {
-                minSalary = employee[id].getSalary();
-                idMin = id;
-            }
-            System.out.println("\nСотрудник с минимальной заработной платой в месяц " + employee[idMin].toString());
-        }
-        return employee[idMin];
-    }
+/*
 
-    // Найти сотрудника с максимальной ЗП
-    public static Employee findEmployeeWithMaxSalary(Employee employee[]) {
-        int id;
-        int idMax = 0;
-        double maxSalary = employee[0].getSalary();
-        for (id = 1; id < employee.length; id++) {
-            if (employee[id].getSalary() > maxSalary) {
-                maxSalary = employee[id].getSalary();
-                idMax = id;
-            }
-            System.out.println("\nСотрудник с максимальной заработной платой в месяц " + employee[idMax].toString());
-        }
-        return employee[idMax];
-    }
-
-    // Средняя заработная плата
-    public static void findAverageSalary(Employee employee[]) {
-        double averageSalary = findSumOfSalaryForMonth(employee) / employee.length;
-        System.out.println("\nСредняя заработная плата по компании: " + averageSalary);
-    }
-
-    // Распечатать ФИО всех сотрудников
-    public static void printFullNameOfEmployees(Employee employee[]) {
-        for (int id = 0; id < employee.length; id++) {
-            System.out.println(employee[id].getFullName());
-        }
-    }
 
 
     // Проиндексировать зарплату (вызвать изменение зп у всех сотрудников на величину аргумента в %)
@@ -273,3 +224,4 @@ public class EmployeeBook {
         }
     }
 }
+*/
