@@ -5,9 +5,16 @@ public class Employee {
     private String fullName;
     private int department;
     private double salary;
-    private int id;
 
-    public static int counter = 0;
+    public int getId() {
+        return id;
+    }
+
+    private final int id;
+
+    public static int counter = 1;
+
+
 
     public Employee(String fullName, int department, double salary) {
         this.fullName = fullName;
@@ -16,13 +23,10 @@ public class Employee {
         this.id = counter++;
     }
 
-    public String getFullName() {
+    public String getFullName(){
         return fullName;
     }
 
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
-    }
     public int getDepartment() {
         return department;
     }
@@ -53,8 +57,8 @@ public class Employee {
 
     @Override
     public String toString() {
-        return "Employee{" +
-                "fullName='" + fullName + '\'' +
+        return "Employee{" + "id:" + id +
+                ", fullName='" + fullName + '\'' +
                 ", department='" + department + '\'' +
                 ", salary='" + salary + '\'' +
                 '}';
