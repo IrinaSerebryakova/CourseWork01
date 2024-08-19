@@ -1,275 +1,215 @@
-import java.util.ArrayList;
-
 public class EmployeeBook {
-    static Employee generalManager = new Employee("Пугачёва Алла Борисовна", 1, 465000.00);
-    static Employee directorOfProduction = new Employee("Киркоров Филипп Бедросович", 1, 455000.00);
-    static Employee mainEngineer = new Employee("Козлов Игорь Витальевич", 2, 225000.00);
-    static Employee engineer = new Employee("Козлов Иван Игоревич", 2, 125000.00);
-    static Employee estimator = new Employee("Бронина Виктория Васильевна", 2, 120000.00);
-    static Employee salesSpecialist = new Employee("Козлов Святослав Иванович", 3, 156000.00);
-    static Employee economist = new Employee("Восточная Марина Васильевна", 4, 110000.00);
-    static Employee secretary = new Employee("Васильева Эльвира Альбертовна", 5, 75000.00);
-    static Employee accountant = new Employee("Сухорукова Светлана Аркадьевна", 4, 138000.00);
-    static Employee worker = new Employee("Сухоруков Вячеслав Викторович", 2, 120000.00);
-
-    public static Employee[] getEmployees() {
-        return employees;
+    private final Employee employees[];
+    public EmployeeBook(int size){
+        this.employees = new Employee[size];
     }
 
-    private static Employee employees[] = {generalManager, directorOfProduction, mainEngineer,
-            engineer, estimator, salesSpecialist, economist,
-            secretary, accountant, worker};
-
-    // Получить список всех сотрудников со всеми имеющимися данными
-    public static void dataOfEmployee(Employee employee[]) {
-        System.out.println("Список сотрудников компании: ");
-        for (int id = 0; id < employee.length; id++) {
-            System.out.println(employee[id].toString());
+    public int size(){
+        int size = 0;
+        for (Employee employee : employees) {
+            if (employee != null) {
+                size++;
+            }
         }
-        System.out.println("");
+        return size;
     }
 
-    // Сумма затрат на ЗП в месяц
-    public static double findSumOfSalaryForMonth(Employee employee[]) {
+    public void dataOfEmployee() {
+        for (Employee employee : employees) {
+            if (employee != null) {
+                System.out.println(employee.toString());
+            }
+        }
+    }
+
+    public double calculateSumOfSalaryForMonth() {
         double sum = 0;
-        for (int id = 0; id < employee.length; id++) {
-            sum += employee[id].getSalary();
+        for (Employee employee : employees) {
+            if (employee != null) {
+                sum += employee.getSalary();
+            }
         }
-        System.out.println("\nСумма затрат на заработную плату в месяц составляет: " + sum);
         return sum;
     }
 
 
-    // Найти сотрудника с минимальной ЗП
-    public static Employee findEmployeeWithMinSalary(Employee employee[]) {
-        int id;
-        int idMin = 0;
-        double minSalary = employee[0].getSalary();
-        for (id = 1; id < employee.length; id++) {
-            if (employee[id].getSalary() < minSalary) {
-                minSalary = employee[id].getSalary();
-                idMin = id;
+    public Employee findEmployeeWithMinSalary() {
+        if(employees.length == 0)
+            return null;
+        Employee employeeWithMinSalary = employees[0];
+        for (Employee employee : employees) {
+            if (employee != null) {
+                if (employee.getSalary() < employeeWithMinSalary.getSalary()) {
+                    employeeWithMinSalary = employee;
+                }
             }
-            System.out.println("\nСотрудник с минимальной заработной платой в месяц " + employee[idMin].toString());
         }
-        return employee[idMin];
+        return employeeWithMinSalary;
     }
 
-    // Найти сотрудника с максимальной ЗП
-    public static Employee findEmployeeWithMaxSalary(Employee employee[]) {
-        int id;
-        int idMax = 0;
-        double maxSalary = employee[0].getSalary();
-        for (id = 1; id < employee.length; id++) {
-            if (employee[id].getSalary() > maxSalary) {
-                maxSalary = employee[id].getSalary();
-                idMax = id;
+    public Employee findEmployeeWithMaxSalary() {
+        if(employees.length == 0)
+            return null;
+        Employee employeeWithMaxSalary = employees[0];
+        for (Employee employee : employees) {
+            if (employee != null) {
+                if (employee.getSalary() > employeeWithMaxSalary.getSalary()) {
+                    employeeWithMaxSalary = employee;
+                }
             }
-            System.out.println("\nСотрудник с максимальной заработной платой в месяц " + employee[idMax].toString());
         }
-        return employee[idMax];
+        return employeeWithMaxSalary;
     }
 
-    // Средняя заработная плата
-    public static void findAverageSalary(Employee employee[]) {
-        double averageSalary = findSumOfSalaryForMonth(employee) / employee.length;
-        System.out.println("\nСредняя заработная плата по компании: " + averageSalary);
+    public double calculateAverageSalary() {
+        if(employees.length == 0)
+            return 0.0;
+        return calculateSumOfSalaryForMonth() / size();
     }
 
-    // Распечатать ФИО всех сотрудников
-    public static void printFullNameOfEmployees(Employee employee[]) {
-        for (int id = 0; id < employee.length; id++) {
-            System.out.println(employee[id].getFullName());
+
+    public void printFullNamesOfEmployee() {
+        for (Employee employee : employees) {
+            if (employee != null) {
+                System.out.println(employee.getFullName());
+            }
         }
     }
 
 
-    // Проиндексировать зарплату (вызвать изменение зп у всех сотрудников на величину аргумента в %)
-    public static void indexSalary(Employee employee[], double percentageIncrease) {
-        for (int id = 0; id < employee.length; id++) {
-            employee[id].setSalary(employee[id].getSalary()
-                    + (employee[id].getSalary() * percentageIncrease));
+    public void indexSalary(double percent) {
+        for (Employee employee : employees) {
+            if (employee != null) {
+                employee.setSalary(employee.getSalary() + employee.getSalary() * percent);
+            }
         }
-        System.out.println("\nВыполнена индексация заработной платы," +
-                "коэффициент индексации = " + percentageIncrease);
-        dataOfEmployee(employee);
     }
 
-    // Найти сотрудника с минимальной ЗП по отделу
-    public static Employee findEmployeeWithMinSalary(Employee employee[], int department) {
-        int id;
-        int idMin = 0;
-        double minSalary = employee[0].getSalary();
-        if (department <= 1 && department >= 5) {
-            System.out.println("\nНекорректный ввод");
-        } else {
-            for (id = 1; id < employee.length; id++) {
-                if (employee[id].getDepartment() == department) {
-                    if (employee[id].getSalary() < minSalary) {
-                        minSalary = employee[id].getSalary();
-                        idMin = id;
+    public Employee findEmployeeWithMinSalary(int department) {
+        Employee employeeWithMinSalary = null;
+        double minSalary = Double.MAX_VALUE;
+        for (Employee employee : employees) {
+                    if (employee.getDepartment() == department) {
+                    if (employee.getSalary() < minSalary) {
+                        employeeWithMinSalary = employee;
                     }
                 }
             }
-            System.out.println("\nСотрудник с минимальной заработной платой по отделу "
-                    + department + ": " + employee[idMin].getFullName());
-        }
-        return employee[idMin];
+        return employeeWithMinSalary;
     }
 
-    // Найти сотрудника с максимальной ЗП по отделу
-    public static void findEmployeeWithMaxSalary(Employee employee[], int department) {
-        int id;
-        int idMax = 0;
-        double maxSalary = 0;
-        if (department <= 1 && department >= 5) {
-            System.out.println("\nНекорректный ввод");
-        } else {
-            for (id = 1; id < employee.length; id++) {
-                if (employee[id].getDepartment() == department) {
-                    if (employee[id].getSalary() > maxSalary) {
-                        maxSalary = employee[id].getSalary();
-                        idMax = id;
+
+    public Employee findEmployeeWithMaxSalary(int department) {
+        Employee employeeWithMaxSalary = null;
+        double maxSalary = Double.MIN_VALUE;
+        for (Employee employee : employees) {
+                if (employee.getDepartment() == department) {
+                    if (employee.getSalary() > maxSalary) {
+                        employeeWithMaxSalary = employee;
+                        maxSalary = employee.getSalary();
                     }
                 }
             }
-            System.out.println("\nСотрудник с максимальной заработной платой по отделу "
-                    + department + ": " + employee[idMax].getFullName());
-        }
-
+        return employeeWithMaxSalary;
     }
 
-    // Сумма затрат на ЗП по отделу
-    public static void findSumOfSalaryForMonth(Employee employee[], int department) {
+
+    public double calculateSumOfSalaryForMonth(int department) {
         double sum = 0;
-        if (department <= 1 && department >= 5) {
-            System.out.println("\nНекорректный ввод");
-        } else {
-            for (int id = 0; id < employee.length; id++) {
-                if (employee[id].getDepartment() == department) {
-                    sum += employee[id].getSalary();
+            for (Employee employee : employees) {
+                    if (employee.getDepartment() == department) {
+                        sum += employee.getSalary();
+                    }
                 }
-            }
-            System.out.println("\nСумма затрат на заработную плату в отделе "
-                    + department + " в месяц составляет: " + sum);
+            return sum;
         }
-    }
 
-    // Средняя заработная плата по отделу
-    public static void findAverageSalary(Employee employee[], int department) {
-        double sum = 0;
-        int count = 0;
-        for (int id = 0; id < employee.length; id++) {
-            if (employee[id].getDepartment() == department) {
-                sum += employee[id].getSalary();
+    public int departmentCount(int dep){
+       int count = 0;
+        for (Employee employee : employees) {
+            if (employee.getDepartment() == dep) {
                 count++;
             }
         }
-        double averageSalary = sum / count;
-        System.out.println("\nСредняя заработная плата в отделе "
-                + department + " составляет: " + averageSalary);
+        return count;
     }
 
-    // Проиндексировать зарплату в отделе (вызвать изменение зп у всех сотрудников на величину аргумента в %)
-    public static void indexTheSalary(Employee employee[], int department, double percentageIncrease) {
-        for (int id = 0; id < employee.length; id++) {
-            if (employee[id].getSalary() != 0 &&
-                    employee[id].getDepartment() == department &&
-                    employee[id].getFullName() != null) {
-                employee[id].setSalary(employee[id].getSalary() +
-                        (employee[id].getSalary() * percentageIncrease));
-            }
-        }
-        System.out.println("\nВыполнена индексация заработной платы в отделе " + department +
-                ", коэффициент индексации = " + percentageIncrease);
+    public double calculateAverageSalary(int dep) {
+        return calculateSumOfSalaryForMonth(dep) / departmentCount(dep);
     }
 
-    // напечатать всех сотрудников отдела (все данные, кроме отдела)
-    public static void dataOfEmployee(Employee employee[], int department) {
-        System.out.println("\nСписок сотрудников отдела " + department + ": ");
-        for (int id = 0; id < employee.length; id++) {
-            if (employee[id].getDepartment() == department) {
-                System.out.println(employee[id].toString());
+
+    public void indexTheSalary(int dep, double percent) {
+        for (Employee employee : employees) {
+            if (employee != null) {
+                if (employee.getDepartment() == dep) {
+                    employee.setSalary(employee.getSalary() + (employee.getSalary() * percent));
+                }
             }
         }
     }
 
-    public static ArrayList generateArrayListToManage(Employee employee[]) {
-        ArrayList<Employee> employeeNew = new ArrayList();
-        for (int id = 0; id < employee.length; id++) {
-            employeeNew.add(employee[id]);
-        }
-        return employeeNew;
-    }
 
-    //Удалить сотрудника по id, нуллим его ячейку в массиве
-    public static void deleteEmployee(Employee[] employee, int index) {
-        ArrayList<Employee> employeeNew = new ArrayList(generateArrayListToManage(getEmployees()));
-        Employee deleteEmployeeFromArray = new Employee(null, 0, 0);
-        employeeNew.set(index, deleteEmployeeFromArray);
-        for (int i = 0; i < employeeNew.size(); i++) {
-            employee[i] = employeeNew.get(i);
-        }
-    }
-
-
-    //  Добавить метод для получения сотрудника по id
-    public void getEmployeeForId(Employee[] employee, int id) {
-        System.out.println(employee[id].toString());
-    }
-
-    static int indexOfOpenSpace = 0;
-    static boolean haveOpenSpace = false;
-
-    //Поиск свободных ячеек в массиве
-    public static void findOpenSpace(Employee[] employee) {
-        ArrayList<Employee> employeeNew = new ArrayList(generateArrayListToManage(employee));
-        Employee openSpace = new Employee(null, 0, 0);
-        for (int i = 0; i < employeeNew.size(); i++) {
-            if (employeeNew.get(i).hashCode() == openSpace.hashCode()
-                    && openSpace.equals(employeeNew.get(i))) {
-                indexOfOpenSpace = i;
-                haveOpenSpace = true;
+    public void dataOfEmployee(int dep) {
+        for (Employee employee : employees) {
+            if (employee != null) {
+                if (employee.getDepartment() == dep) {
+                    System.out.println("id:" + employee.getId() + ", fullName: " + employee.getFullName()
+                            + ", salary: " + employee.getSalary());
+                }
             }
         }
-        System.out.println("");
-        System.out.println(haveOpenSpace);
     }
 
-
-    // Добавить нового сотрудника (метод должен найти свободную ячейку в массиве и положить нового сотрудника в нее).
-    public static void addNewEmployee(Employee[] employee, Employee newEmployee) {
-        ArrayList<Employee> employeeNew = new ArrayList(generateArrayListToManage(employee));
-        findOpenSpace(employee);
-        if (haveOpenSpace == true) {
-            employeeNew.set(indexOfOpenSpace, newEmployee);
+    public void getEmployeeForId(int id) {
+        if (employees[id] != null) {
+            System.out.println(employees[id].toString());
         }
-        employeeNew.toArray(employee);
     }
 
-    // Получить в качестве параметра число и вывести всех сотрудников с зп меньше числа (распечатать id, фио и зп в консоль);
-    public static void compareSalaryLessArgs(Employee[] employee, double compareArgs) {
+    public void compareSalaryLessArgs(double compareArgs) {
         int count = 0;
-        ArrayList<Employee> employeeNew = new ArrayList(generateArrayListToManage(employee));
-        System.out.println("\nСотрудники с заработной платой меньше, чем " + compareArgs + ": ");
-        for (int i = 0; i < employeeNew.size(); i++) {
-            if (employeeNew.get(i).getSalary() < compareArgs) {
-                System.out.println("id: " + i + ", fullName: " + employeeNew.get(i).getFullName()
-                        + ", salary: " + employeeNew.get(i).getSalary());
+        for (Employee employee : employees) {
+            if (employee != null) {
+                if (employee.getSalary() < compareArgs) {
+                    System.out.println("id:" + employee.getId() + ", fullName: " + employee.getFullName()
+                            + ", salary: " + employee.getSalary());
+                }
             }
         }
     }
 
-    // Получить в качестве параметра число и вывести всех сотрудников с зп больше числа (распечатать id, фио и зп в консоль);
-    public static void compareSalaryMoreArgs(Employee[] employee, double compareArgs) {
+    public void compareSalaryMoreArgs(double compareArgs) {
         int count = 0;
-        ArrayList<Employee> employeeNew = new ArrayList(generateArrayListToManage(employee));
-        System.out.println("\nСотрудники с заработной платой больше, чем " + compareArgs + ": ");
-        for (int i = 0; i < employeeNew.size(); i++) {
-            if (employeeNew.get(i).getSalary() > compareArgs) {
-                System.out.println("id: " + i + ", fullName: " + employeeNew.get(i).getFullName()
-                        + ", salary: " + employeeNew.get(i).getSalary());
+        for (Employee employee : employees) {
+            if (employee != null) {
+                if (employee.getSalary() > compareArgs) {
+                    System.out.println("id:" + employee.getId() + ", fullName: " + employee.getFullName()
+                            + ", salary: " + employee.getSalary());
+                }
             }
         }
     }
+
+    public void delete(int index) {
+       employees[index] = null;
+                }
+
+
+    public boolean add(Employee newEmployee) {
+        boolean result = false;
+        for (int i = 0; i < employees.length; i++) {
+            if(employees[i] == null){
+                employees[i] = newEmployee;
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void printMessage(String str){
+        System.out.println(str);
+    }
+
 }
+
